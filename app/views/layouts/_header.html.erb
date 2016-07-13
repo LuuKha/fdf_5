@@ -16,6 +16,7 @@
               admin_products_path %></li>  
             <li><%= link_to t("application.admin_categories"), 
               admin_categories_path %></li>
+            <li><%= link_to t("manage_orders"), admin_orders_path %></li>  
           <% else %>
             <li><%= link_to t("product.products"), products_path %></li>
             <li><%= link_to t("application.user_suggest"), 

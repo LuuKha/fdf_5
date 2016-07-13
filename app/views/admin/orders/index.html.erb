@@ -1,0 +1,49 @@
+<% provide :title, t("order.manage_orders") %>
+<h1><%= t "order.manage_orders" %></h1>
+<a href="<%= admin_orders_path type:"unpaid" %>">
+  <h2><%= t "order.unpaid_orders" %></h2>
+</a>
+<% if @type_paid == "unpaid" %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th><%= t "order.order_id" %></th>
+        <th><%= t "order.user_name" %></th>
+        <th><%= t "order.user_id" %></th>
+        <th><%= t "order.created_at" %></th>
+        <th><%= t "order.cost" %></th>
+        <th><%= t "order.payment_method" %></th>
+        <th><%= t "order.paid" %></th>
+        <th><%= t "order.view" %></th>
+        <th><%= t "order.delete" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @orders %>
+    </tbody>
+  </table>
+  <%= will_paginate %>
+<% end %>
+<a href="<%= admin_orders_path type:"paid" %>">
+  <h2><%= t "order.paid_orders" %></h2>
+</a>
+<% if @type_paid == "paid" %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th><%= t "order.order_id" %></th>
+        <th><%= t "order.user_name" %></th>
+        <th><%= t "order.user_id" %></th>
+        <th><%= t "order.created_at" %></th>
+        <th><%= t "order.cost" %></th>
+        <th><%= t "order.payment_method" %></th>
+        <th><%= t "order.paid_at" %></th>
+        <th><%= t "order.view" %></th>
+        <th><%= t "order.delete" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @orders %>
+    </tbody>
+  </table>
+<% end %>

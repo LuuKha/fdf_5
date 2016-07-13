@@ -1,0 +1,21 @@
+<tr>
+  <td><%= order.id %></td>
+  <td><%= order.user.name %></td>
+  <td><%= order.user.id %></td>
+  <td><%= order.created_at %></td>
+  <td><%= order.cost %></td>
+  <td><%= order.payment_method %></td>
+  <% if @type_paid == "unpaid" %>
+    <td><%= link_to t("order.paid"), admin_order_path order,
+              method: :put, data: {confirm: t("confirm.sure")}, 
+              class: "btn btn-primary" %></td>
+  <% elsif @type_paid == "paid" %>
+    <td><%= order.paid_at %></td>
+  <% end %>
+  <td>
+    <%= link_to t("order.view"), [:admin, order], class: "btn btn-primary" %>
+  </td>
+  <td><%= link_to t("order.delete"), admin_order_path order,
+              method: :delete, data: {confirm: t("confirm.sure")}, 
+              class: "btn btn-primary" %></td>
+</tr>
