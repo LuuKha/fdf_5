@@ -10,10 +10,12 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show] do 
     resources :comments, only: [:create, :destroy]
   end
+  resources :orders
   namespace :admin do
     resources :users, only: [:index, :create, :destroy]
     resources :products
     resources :suggests, only: [:show]
     resources :categories, only: [:destroy, :create, :index]
+    resources :orders
   end
 end
