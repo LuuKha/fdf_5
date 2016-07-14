@@ -33,11 +33,11 @@ ActiveRecord::Schema.define(version: 20160704033933) do
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "payment_method"
-    t.integer  "cost"
+    t.integer  "cost",           default: 0
     t.datetime "paid_at"
-    t.boolean  "is_paid"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.boolean  "is_paid",        default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"

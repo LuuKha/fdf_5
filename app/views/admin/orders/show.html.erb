@@ -1,0 +1,42 @@
+<h1><%= "Information order" %></h1>
+<p><%= t "order.order_id" %> : <%= @order.id %></p>
+<p><%= t "order.created_at" %> : <%= @order.created_at %></p>
+<p><%= t "order.user_name" %> : <%= @order.user.name %></p>
+<p><%= t "order.user_id" %> : <%= @order.user.id %></p>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= t "order.product_order_id" %></th>
+      <th><%= t "order.product_order_name" %></th>
+      <th><%= t "order.product_quantity" %></th>
+      <th><%= t "order.product_price" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @product_orders.each do |product_order| %>
+      <tr>
+        <td><%= product_order.product_id %></td>
+        <td><%= product_order.product.name %></td>
+        <td><%= product_order.number %></td>
+        <td><%= product_order.product.price %></td>
+      </tr>  
+    <% end %>
+    <tr>
+      <td colspan="3"><strong class="order-cost"><%= t "order.cost" %> : </strong></td>
+      <td><strong><%= @order.cost %></strong></td>
+    </tr>
+  </tbody>
+</table>
+<p><%= t "order.payment_method" %> : <%= @order.payment_method %></p>
+<% if @order.is_paid %>
+  <p><%= t "order.order_status" %></p>
+<% else %>
+  <%= link_to t("order.paid"), admin_order_path(@order),
+    method: :put, data: {confirm: t("confirm.sure")}, 
+    class: "btn btn-primary" %>
+<% end %>
+<p>
+  <%= link_to t("order.delete"), admin_order_path(@order),
+    method: :delete, data: {confirm: t("confirm.sure")}, 
+    class: "btn btn-primary" %>
+</p>

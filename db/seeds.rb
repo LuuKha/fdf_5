@@ -45,3 +45,12 @@ Product.create name: "name",
   user_id: n+1,
   product_id: n+1
 end
+5.times do |n|
+  Order.create user_id: 3,
+  cost: 10000,
+  is_paid: false
+end
+2.times do |n|
+  orders = Order.all
+  orders.each {|order| order.product_orders.create product_id: n+1, number: 2}
+end
