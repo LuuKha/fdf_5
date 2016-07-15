@@ -16,6 +16,6 @@ Rails.application.routes.draw do
     resources :products
     resources :suggests, only: [:show]
     resources :categories, only: [:destroy, :create, :index]
-    resources :orders
+    resources :orders   
   end
 end

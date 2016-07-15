@@ -27,3 +27,16 @@
     </tr>
   </tbody>
 </table>
+<p><%= t "order.payment_method" %> : <%= @order.payment_method %></p>
+<% if @order.is_paid %>
+<p><%= t "order.order_status" %></p>
+<% else %>
+  <%= link_to t("order.paid"), admin_order_path(@order),
+    method: :put, data: {confirm: t("confirm.sure")}, 
+    class: "btn btn-primary" %>
+<% end %>
+<p>
+  <%= link_to t("order.delete"), admin_order_path(@order),
+    method: :delete, data: {confirm: t("confirm.sure")}, 
+    class: "btn btn-primary" %>
+</p>

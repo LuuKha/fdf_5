@@ -17,4 +17,32 @@ class Admin::OrdersController < ApplicationController
       @product_orders = @order.product_orders
     end
   end
+  
+  def update
+    @order = Order.find params[:id]
+    if @order.nil?
+      flash[:danger] = t "order.nil"
+      redirect_to admin_orders_path
+    else
+      @order.is_paid = true
+      @order.paid_at = Time.now
+      if @order.save
+        flash[:success] = t "order.success"
+        redirect_to :back
+      else
+        flash[:danger] = t "order.fail"
+      end
+    end
+  end  
+ 
+  def destroy
+    @order = Order.find params[:id]
+    if @order.nil?
+      flash[:danger] = t "order.nil"
+      redirect_to admin_orders_path
+    elsif @order.destroy
+      flash[:success] = t "order.destroy"
+      redirect_to admin_orders_path
+    end
+  end
 end
